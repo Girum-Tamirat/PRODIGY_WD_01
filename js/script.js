@@ -13,3 +13,19 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('scrolled');
     }
 });
+
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const serviceID = 'service_myr6mqe';
+  const templateID = 'template_e0mpsqo';
+
+  emailjs.sendForm(serviceID, templateID, this)
+      .then(() => {
+          alert('Message sent successfully!');
+          document.getElementById('contactForm').reset();
+      }, (err) => {
+          alert('Oops... something went wrong.');
+          console.log(JSON.stringify(err));
+      });
+});
